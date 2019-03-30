@@ -5,6 +5,7 @@ from kivy.clock import Clock
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from random import randint, random
+from kivy.uix.label import Label
 
 
 class PongBall(Widget):
@@ -95,6 +96,18 @@ class PongGame(Widget):
             self.player1.score += 1
             self.serve_ball(vel=(-4, 0))
             self.score1.text = str(self.player1.score)
+        if self.player1.score > 1 or self.player2.score > 10:
+            loser = "Player 1"
+            if self.player1.score > self.player2.score:
+                loser = "Player 2"
+            self.label = Label(text="You LOSE\n{}".format(loser))
+            self.label.set_center_x(self.center_x)
+            self.label.set_center_y(self.center_y+20)
+            self.label.color = (1,0,0,1)
+            self.label.font_size = 75
+            self.label.halign = 'center'
+            self.add_widget(self.label)
+            return False
 
 
 class PongApp(App):
@@ -105,8 +118,9 @@ class PongApp(App):
         game.set_text_color()
         game.serve_ball()
         game.serve_bats()
-        Clock.schedule_interval(game.update, 1.0/60.0)
+        event = Clock.schedule_interval(game.update, 1.0/60.0)
         return game
 
 if __name__ == '__main__':
     PongApp().run()
+
