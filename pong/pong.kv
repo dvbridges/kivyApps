@@ -1,0 +1,66 @@
+#:kivy 1.0.9
+
+
+<PongBall>:
+    size: 50, 50
+    color: 1,1,1,1
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+    canvas.before:
+        Color:
+            rgba: self.color
+
+<PongBat>:
+    size: 50, 200
+    score: self.score
+    color: .5, .5, .5, .5
+    canvas.before:
+        Color:
+            rgba: self.color
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        
+    
+
+<PongGame>:
+
+    ball: pong_ball
+    player1: pong_bat_1
+    player2: pong_bat_2
+    score1: score1
+    score2: score2
+
+    canvas:
+        Rectangle:
+            pos: self.center_x - 5, 0
+            size: 10, self.height
+
+    Label:
+        id: score1
+        font_size: 70
+        center_x: root.width / 4
+        top: root.top - 50
+        text: "0"
+    
+    Label:
+        id: score2
+        font_size: 70
+        center_x: root.width * 3 / 4
+        top: root.top - 50
+        text: "0"
+    
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+    
+    PongBat:
+        id: pong_bat_1
+        # center: 25, self.parent.height / 2
+        
+    PongBat:
+        id: pong_bat_2
+        center: self.parent.width - 25, self.parent.height / 2
