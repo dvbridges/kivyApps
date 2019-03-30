@@ -24,7 +24,6 @@ class PongBall(Widget):
         self.pos = Vector(*self.velocity) + self.pos
 
 
-
 class PongBat(Widget):
     
     score = NumericProperty(0)
@@ -47,6 +46,7 @@ class PongBat(Widget):
     
     def randomize_ball_color(self):
         return (random(), random(), random(), 1)
+
 
 class PongGame(Widget):
     
