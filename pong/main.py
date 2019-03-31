@@ -96,7 +96,10 @@ class PongGame(Widget):
             self.player1.score += 1
             self.serve_ball(vel=(-4, 0))
             self.score1.text = str(self.player1.score)
-        if self.player1.score > 1 or self.player2.score > 10:
+        if self.player1.score > 10 or self.player2.score > 10:           
+            self.remove_widget(self.player1)
+            self.remove_widget(self.player2)
+            self.remove_widget(self.ball)
             loser = "Player 1"
             if self.player1.score > self.player2.score:
                 loser = "Player 2"
