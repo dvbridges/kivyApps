@@ -1,0 +1,43 @@
+#:kivy 1.10.1
+
+<MySlider@Slider>:
+    orientation: 'vertical'
+    min: 0
+    max: 10
+
+<Controller>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+                text: str(int(slider1.value))
+                font_size: 50
+            Label:
+                text: str(int(slider2.value))
+                font_size: 50
+            Label:
+                text: str(int(slider3.value))
+                font_size: 50
+
+        BoxLayout:
+            orientation: 'horizontal'
+            MySlider:
+                id: slider1
+            MySlider:
+                id: slider2
+            MySlider:
+                id: slider3
+
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+                text: "Bass"
+                font_size: 50
+            Label:
+                text: "Mid"
+                font_size: 50
+            Label:
+                text: "Treble"
+                font_size: 50
